@@ -38,6 +38,8 @@ struct branch *moto_lson(struct branch *Branch);
 
 struct branch *moto_rson(struct branch *Branch);
 
+int has_fathers(struct branch *Branch);
+
 void print_branchN(struct branch *Branch);
 
 void print_inOrder(struct branch *Root);
