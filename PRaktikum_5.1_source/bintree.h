@@ -1,0 +1,46 @@
+/*
+ * bintree.h
+ *
+ *  Created on: 15.12.2014
+ *      Author: georg
+ */
+
+#ifndef BINTREE_H_
+#define BINTREE_H_
+
+
+
+struct branch
+{
+	char leef;
+	struct branch *leftson;
+	struct branch *rightson;
+	struct branch *father;
+};
+
+
+
+struct branch *initialise_root (char a);
+
+struct branch *add_lson (struct branch *Father, char a);
+
+struct branch *add_rson(struct branch *Father, char a);
+
+struct branch *free_lson(struct branch *Father);
+
+struct branch *free_rson(struct branch *Father);
+
+struct branch *free_branch(struct branch *Branch);
+
+struct branch *moto_father(struct branch *Branch);
+
+struct branch *moto_lson(struct branch *Branch);
+
+struct branch *moto_rson(struct branch *Branch);
+
+void print_branchN(struct branch *Branch);
+
+void print_inOrder(struct branch *Root);
+
+
+#endif /* BINTREE_H_ */
