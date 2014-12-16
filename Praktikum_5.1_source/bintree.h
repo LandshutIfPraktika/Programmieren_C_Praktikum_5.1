@@ -20,11 +20,11 @@ struct branch
 
 
 
-struct branch *initialise_root (char a);
+struct branch *initialise_root (void);
 
-struct branch *add_lson (struct branch *Father, char a);
+struct branch *add_lson (struct branch *Father);
 
-struct branch *add_rson(struct branch *Father, char a);
+struct branch *add_rson(struct branch *Father);
 
 struct branch *free_lson(struct branch *Father);
 
@@ -43,6 +43,8 @@ int has_fathers(struct branch *Branch);
 void print_branchN(struct branch *Branch);
 
 void print_inOrder(struct branch *Root);
+
+void fill_rootToBranch(struct branch *Root, char a);
 
 
 #endif /* PRAKTIKUM_5_1_SOURCE_BINTREE_H_ */

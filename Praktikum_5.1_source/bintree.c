@@ -10,12 +10,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-struct branch *initialise_root(char a)
+struct branch *initialise_root(void)
 {
 	struct branch *root;
 	root = malloc(sizeof(struct branch));
 
-	root->leef = a;
+	root->leef = 0;
 
 	root->father = NULL;
 	root->leftson = NULL;
@@ -24,12 +24,12 @@ struct branch *initialise_root(char a)
 	return root;
 }
 
-struct branch *add_lson(struct branch *Father, char a)
+struct branch *add_lson(struct branch *Father)
 {
 	struct branch *leftSon;
 	leftSon = malloc(sizeof(struct branch));
 
-	leftSon->leef = a;
+	leftSon->leef = 0;
 
 	leftSon->father = Father;
 	leftSon->leftson = NULL;
@@ -39,12 +39,12 @@ struct branch *add_lson(struct branch *Father, char a)
 	return leftSon;
 }
 
-struct branch *add_rson(struct branch *Father, char a)
+struct branch *add_rson(struct branch *Father)
 {
 	struct branch *rightSon;
 	rightSon = malloc(sizeof(struct branch));
 
-	rightSon->leef = a;
+	rightSon->leef = 0;
 
 	rightSon->father = Father;
 	rightSon->leftson = NULL;
@@ -98,8 +98,6 @@ int has_fathers(struct branch *Branch)
 
 void print_branchN(struct branch *Branch)
 {
-	int i = 0;
-
 	printf("%c(%d)", Branch->leef, has_fathers(Branch));
 }
 
@@ -122,3 +120,24 @@ void print_inOrder(struct branch *Root)
 	}
 }
 
+void fill_rootToBranch(struct branch *Root, char a)
+{
+		if (Root->leef==0)
+			Root->leef=a;
+		else if (Root->father==NULL||Root->father->rightson !=NULL)
+		{
+			if (Root->leftson==NULL)
+			{
+				add_lson(Root);
+			}
+			fill_rootToBranch(Root->leftson,a);
+		}
+		else
+		{
+			if (Root->rightson==NULL)
+			{
+				add_rson(Root);
+			}
+			fill_rootToBranch(Root->rightson,a);
+		}
+}
