@@ -6,7 +6,7 @@
  */
 
 
-#include "bintree.h"
+#include "../Praktikum_5.1_source/bintree.h"
 
 int int main(int argc, char **argv) {
 

@@ -5,8 +5,8 @@
  *      Author: georg
  */
 
-#ifndef BINTREE_H_
-#define BINTREE_H_
+#ifndef PRAKTIKUM_5_1_SOURCE_BINTREE_H_
+#define PRAKTIKUM_5_1_SOURCE_BINTREE_H_
 
 
 
@@ -43,4 +43,4 @@ void print_branchN(struct branch *Branch);
 void print_inOrder(struct branch *Root);
 
 
-#endif /* BINTREE_H_ */
+#endif /* PRAKTIKUM_5_1_SOURCE_BINTREE_H_ */

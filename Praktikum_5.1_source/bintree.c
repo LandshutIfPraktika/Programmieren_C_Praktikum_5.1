@@ -6,7 +6,8 @@
  */
 
 
-#include "bintree.h"
+#include "../Praktikum_5.1_source/bintree.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 
