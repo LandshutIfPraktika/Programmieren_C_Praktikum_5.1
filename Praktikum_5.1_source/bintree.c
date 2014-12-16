@@ -111,6 +111,7 @@ void print_inOrder(struct branch *Root)
 		}
 
 		print_branchN(Root);
+		printf(" ");
 
 		if (Root->rightson != NULL)
 		{
@@ -120,24 +121,37 @@ void print_inOrder(struct branch *Root)
 	}
 }
 
-void fill_rootToBranch(struct branch *Root, char a)
+void sort_in(struct branch *Root, char a)
 {
-		if (Root->leef==0)
-			Root->leef=a;
-		else if (Root->father==NULL||Root->father->rightson !=NULL)
+	if (Root->leef  == 0)
+		Root->leef = a;
+	else if (a < Root->leef)
+	{
+		if (Root->leftson==NULL)
 		{
-			if (Root->leftson==NULL)
-			{
-				add_lson(Root);
-			}
-			fill_rootToBranch(Root->leftson,a);
+			add_lson(Root);
 		}
-		else
+		sort_in(Root->leftson, a);
+	}
+	else if (a>Root->leef)
+	{
+		if (Root->rightson==NULL)
 		{
-			if (Root->rightson==NULL)
-			{
-				add_rson(Root);
-			}
-			fill_rootToBranch(Root->rightson,a);
+			add_rson(Root);
 		}
+		sort_in(Root->rightson, a);
+	}
+}
+
+int depth (struct branch *Root)
+{
+
+	if (Root == NULL)
+		return 0;
+
+	else if (depth(Root->rightson)>=depth(Root->leftson))
+		return 1 + depth(Root->rightson);
+
+	else
+		return 1 + depth(Root->leftson);
 }

@@ -44,7 +44,8 @@ void print_branchN(struct branch *Branch);
 
 void print_inOrder(struct branch *Root);
 
-void fill_rootToBranch(struct branch *Root, char a);
+void sort_in(struct branch *Root, char a);
 
+int depth (struct branch *Root);
 
 #endif /* PRAKTIKUM_5_1_SOURCE_BINTREE_H_ */

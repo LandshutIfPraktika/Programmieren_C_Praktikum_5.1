@@ -6,19 +6,23 @@
  */
 
 #include<stdio.h>
+#include<string.h>
 #include "../Praktikum_5.1_source/bintree.h"
 
 int main(int argc, char **argv)
 {
 	struct branch *Root;
+	char *string = "jrskepchdbammoawmelspwyosvmlqyvsslowqrtcvy";
+	int i=0;
 
 	Root = initialise_root();
-	fill_rootToBranch(Root, 'a');
-	fill_rootToBranch(Root, 'b');
-	fill_rootToBranch(Root, 'c');
-	fill_rootToBranch(Root, 'd');
-
+	while (string[i]!='\0')
+	{
+		sort_in(Root,string[i]);
+		i++;
+	}
 	print_inOrder(Root);
+	printf("\n %d",depth(Root));
 
 	return 0;
 
