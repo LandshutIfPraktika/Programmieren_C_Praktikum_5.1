@@ -155,3 +155,12 @@ int depth (struct branch *Root)
 	else
 		return 1 + depth(Root->leftson);
 }
+
+struct branch *free_last(struct branch *Root)
+{
+	if (Root->leftson==NULL && Root->rightson==NULL)
+	{
+		return Root;
+	}
+
+}
