@@ -23,6 +23,9 @@ int main(int argc, char **argv)
 	}
 	print_inOrder(Root);
 	printf("\n %d",depth(Root));
+	free_bintree(Root);
+	print_branchN(find_last(Root));
+
 
 	return 0;
 

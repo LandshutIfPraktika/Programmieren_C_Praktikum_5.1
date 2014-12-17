@@ -90,10 +90,11 @@ struct branch *moto_rson(struct branch *Branch)
 
 int has_fathers(struct branch *Branch)
 {
-	if (Branch->father==NULL)
+	if (Branch->father == NULL)
 		return 0;
 
-	else return 1 + has_fathers(Branch->father);
+	else
+		return 1 + has_fathers(Branch->father);
 }
 
 void print_branchN(struct branch *Branch)
@@ -123,19 +124,19 @@ void print_inOrder(struct branch *Root)
 
 void sort_in(struct branch *Root, char a)
 {
-	if (Root->leef  == 0)
+	if (Root->leef == 0)
 		Root->leef = a;
 	else if (a < Root->leef)
 	{
-		if (Root->leftson==NULL)
+		if (Root->leftson == NULL)
 		{
 			add_lson(Root);
 		}
 		sort_in(Root->leftson, a);
 	}
-	else if (a>Root->leef)
+	else if (a > Root->leef)
 	{
-		if (Root->rightson==NULL)
+		if (Root->rightson == NULL)
 		{
 			add_rson(Root);
 		}
@@ -143,24 +144,38 @@ void sort_in(struct branch *Root, char a)
 	}
 }
 
-int depth (struct branch *Root)
+int depth(struct branch *Root)
 {
 
 	if (Root == NULL)
 		return 0;
 
-	else if (depth(Root->rightson)>=depth(Root->leftson))
+	else if (depth(Root->rightson) >= depth(Root->leftson))
 		return 1 + depth(Root->rightson);
 
 	else
 		return 1 + depth(Root->leftson);
 }
 
-struct branch *free_last(struct branch *Root)
+struct branch *find_last(struct branch *Root)
 {
-	if (Root->leftson==NULL && Root->rightson==NULL)
+	if (Root->leftson == NULL && Root->rightson == NULL)
 	{
 		return Root;
 	}
-
+	else if (depth(Root->rightson) >= depth(Root->leftson))
+		return find_last(Root->rightson);
+	else
+		return find_last(Root->leftson);
 }
+
+void free_bintree(struct branch *Root)
+{
+	struct branch *pointer;
+	while(pointer!=NULL)
+	{
+		pointer = find_last(Root);
+		free_branch(pointer);
+	}
+}
+
