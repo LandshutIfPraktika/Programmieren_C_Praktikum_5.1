@@ -42,6 +42,8 @@ int has_fathers(struct branch *Branch);
 
 void print_branchN(struct branch *Branch);
 
+void print_branch(struct branch *Branch);
+
 void print_inOrder(struct branch *Root);
 
 void sort_in(struct branch *Root, char a);
@@ -51,5 +53,7 @@ int depth (struct branch *Root);
 struct branch *find_last(struct branch *Root);
 
 void free_bintree(struct branch *Root);
+
+struct branch *find_leef(struct branch *Root, char a);
 
 #endif /* PRAKTIKUM_5_1_SOURCE_BINTREE_H_ */

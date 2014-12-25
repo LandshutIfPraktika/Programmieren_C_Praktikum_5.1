@@ -57,6 +57,11 @@ struct branch *add_rson(struct branch *Father)
 struct branch *free_branch(struct branch *Branch)
 {
 	struct branch *Father;
+	if (Branch==Branch->father->leftson)
+		Branch->father->leftson=NULL;
+	else if (Branch == Branch->father->rightson)
+		Branch->father->rightson=NULL;
+
 	Father = Branch->father;
 	free(Branch);
 
@@ -99,27 +104,24 @@ int has_fathers(struct branch *Branch)
 
 void print_branchN(struct branch *Branch)
 {
-	printf("%c(%d)", Branch->leef, has_fathers(Branch));
+	if (Branch ==NULL)
+		printf("no key of such value\n");
+	else
+		printf("%c(%d) ", Branch->leef, has_fathers(Branch)+1);
 }
 
-void print_inOrder(struct branch *Root)
+void print_branch(struct branch *Branch)
 {
-	if (Root != NULL)
-	{
-		if (Root->leftson != NULL)
-		{
-			print_inOrder(Root->leftson);
-		}
+	printf("%c\n", Branch->leef);
+}
 
-		print_branchN(Root);
-		printf(" ");
-
-		if (Root->rightson != NULL)
-		{
-			print_inOrder(Root->rightson);
-		}
-
-	}
+void print_inOrder(struct branch *root)
+{
+	if (root == NULL) return;
+	print_inOrder(root->leftson);
+	print_branchN(root);
+	printf(" ");
+	print_inOrder(root->rightson);
 }
 
 void sort_in(struct branch *Root, char a)
@@ -159,7 +161,9 @@ int depth(struct branch *Root)
 
 struct branch *find_last(struct branch *Root)
 {
-	if (Root->leftson == NULL && Root->rightson == NULL)
+	if (Root==NULL)
+		return NULL;
+	else if (Root->leftson == NULL && Root->rightson == NULL)
 	{
 		return Root;
 	}
@@ -175,7 +179,23 @@ void free_bintree(struct branch *Root)
 	while(pointer!=NULL)
 	{
 		pointer = find_last(Root);
-		free_branch(pointer);
+		if(pointer!=NULL)
+			free_branch(pointer);
 	}
+}
+
+struct branch *find_leef(struct branch *Root, char a)
+{
+	if(Root==NULL)
+		return NULL;
+
+	else if (Root->leef==a)
+		return Root;
+
+	else if (a<Root->leef)
+		return find_leef(Root->leftson,a);
+
+	else
+		return find_leef(Root->rightson,a);
 }
 
